@@ -8,9 +8,9 @@ namespace HomeworkFor08.Model
 {
     public class TaskModel
     {
-        private string Description;
+        private string description;
 
-        public string MyProperty
+        public string  Description
         {
             get { return Description; }
             set { Description = value; }
@@ -28,7 +28,7 @@ namespace HomeworkFor08.Model
 
         public TaskModel(string _Description)
         {
-            Description = _Description;
+            description = _Description;
             isFinished = false;
         }
     }

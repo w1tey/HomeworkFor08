@@ -1,4 +1,5 @@
-﻿using HomeworkFor08.Model;
+﻿using GalaSoft.MvvmLight.Command;
+using HomeworkFor08.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,34 +10,41 @@ using System.Windows;
 
 namespace HomeworkFor08.ViewModel
 {
-    public class TaskViewModel /*: INotifyPropertyChanged*/
+    public class TaskViewModel : ViewModelBase
     {
-        List<TaskModel> tasks = new();
+        List<TaskModel> Tasks = new();
+        string description = "";
 
 
-        public void addTask(string _description)
+        private RelayCommand? addCommand;
+        public RelayCommand? AddCommand
         {
-            if (_description == null) {
-                MessageBox.Show("No description, cannot create a Task."); 
-            }
-
-            else
-            {
-                TaskModel newTask = new TaskModel(_description);
-                tasks.Add(newTask);
-            }
-        }
-
-        public void deleteTask()
-        {
-           //delete chosen task
-        }
-
-        public void finishTask()
-        {
-           //check chosen task
+            get => addCommand ??= new RelayCommand(
+                () =>
+                {
+                    Tasks.Add(new TaskModel(description));
+                });
         }
 
 
+        private RelayCommand deleteCommand;
+        public RelayCommand DeleteCommand
+        {
+            get => addCommand ??= new RelayCommand(
+                () =>
+                {
+                   //chosen one shoujld be deleted
+                });
+        }
+
+        private RelayCommand finishCommand;
+        public RelayCommand FinishCommand
+        {
+            get => addCommand ??= new RelayCommand(
+                () =>
+                {
+                    //chosen one should be deleted
+                });
+        }
     }
 }
